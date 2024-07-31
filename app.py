@@ -18,6 +18,7 @@ import xlsxwriter
 from PIL import Image
 import io
 import base64
+import zipfile
 
 # Configure the page title, favicon, layout, etc
 st.set_page_config(page_title="Radia IPaC",
