@@ -78,9 +78,9 @@ def introPage():
               else:
                   st.error("The zip file is missing one or more required shapefile components (*.shp, *.shx, *.dbf).")
                   return None
-          else:
-              st.error("Please upload a valid zip file.")
-              return None
+            else:
+                st.error("Please upload a valid zip file.")
+                return None
     return None
 
 def run_selenium(shapefile_path):
