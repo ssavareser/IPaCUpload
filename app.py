@@ -87,7 +87,6 @@ def introPage():
     return None
 
 def run_selenium(shapefile_path):
-
     # Configure Chrome options
     chrome_options = Options()
     chrome_options.add_argument('--headless')  # Optional: Run Chrome in headless mode
@@ -95,15 +94,22 @@ def run_selenium(shapefile_path):
     chrome_options.add_argument('--window-size=1920,1080')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
-
-    # Initialize Chrome WebDriver with the specified path
+    
+    # Initialize Chrome WebDriver with webdriver_manager
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
-    service.command_line_args().append("--verbose")
-    driver = webdriver.Chrome(service=service, options=chrome_options)
-    upload_url = 'https://ipac.ecosphere.fws.gov/location/index'
-    driver.get(upload_url)
-    print("Page opened successfully")
+    
+    try:
+        upload_url = 'https://ipac.ecosphere.fws.gov/location/index'
+        driver.get(upload_url)
+        print("Page opened successfully")
+        # Add your selenium code to interact with the page here...
+        
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        
+    finally:
+        driver.quit()
 
     try:
        
