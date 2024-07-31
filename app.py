@@ -49,7 +49,7 @@ def introPage():
     file = st.file_uploader(label="Upload a zip file")
     with st.spinner('Wait for it...'):
         if file is not None:
-            if file.type == "application/zip":
+            if file.type == "application/zip" or file.name.endswith('.zip'):
               st.write(f"Uploaded file: {file.name}")
               st.write(f"File type: {file.type}")
               # Ensure the temp_files directory exists
