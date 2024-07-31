@@ -50,37 +50,37 @@ def introPage():
     with st.spinner('Wait for it...'):
         if file is not None:
             if file.type == "application/zip":
-            st.write(f"Uploaded file: {file.name}")
-            # Ensure the temp_files directory exists
-            os.makedirs("temp_files", exist_ok=True)
-            # Save the uploaded file to a temporary location
-            temp_file_path = os.path.abspath(os.path.join("temp_files", file.name))
-            with open(temp_file_path, "wb") as f:
-                f.write(file.getbuffer())
-            
-            # Extract the zip file and check for required files
-            required_extensions = {".shp", ".shx", ".dbf"}
-            optional_extension = ".prj"
-            found_files = set()
-            with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
-                zip_ref.extractall("temp_files")
-                for file_name in zip_ref.namelist():
-                    _, ext = os.path.splitext(file_name)
-                    if ext.lower() in required_extensions:
-                        found_files.add(ext.lower())
-                    elif ext.lower() == optional_extension:
-                        found_files.add(ext.lower())
-
-            # Check if all required files are present
-            if required_extensions.issubset(found_files):
-                st.success("All required shapefile components are present.")
-                return temp_file_path
-            else:
-                st.error("The zip file is missing one or more required shapefile components (*.shp, *.shx, *.dbf).")
-                return None
-        else:
-            st.error("Please upload a valid zip file.")
-            return None
+              st.write(f"Uploaded file: {file.name}")
+              # Ensure the temp_files directory exists
+              os.makedirs("temp_files", exist_ok=True)
+              # Save the uploaded file to a temporary location
+              temp_file_path = os.path.abspath(os.path.join("temp_files", file.name))
+              with open(temp_file_path, "wb") as f:
+                  f.write(file.getbuffer())
+              
+              # Extract the zip file and check for required files
+              required_extensions = {".shp", ".shx", ".dbf"}
+              optional_extension = ".prj"
+              found_files = set()
+              with zipfile.ZipFile(temp_file_path, 'r') as zip_ref:
+                  zip_ref.extractall("temp_files")
+                  for file_name in zip_ref.namelist():
+                      _, ext = os.path.splitext(file_name)
+                      if ext.lower() in required_extensions:
+                          found_files.add(ext.lower())
+                      elif ext.lower() == optional_extension:
+                          found_files.add(ext.lower())
+  
+              # Check if all required files are present
+              if required_extensions.issubset(found_files):
+                  st.success("All required shapefile components are present.")
+                  return temp_file_path
+              else:
+                  st.error("The zip file is missing one or more required shapefile components (*.shp, *.shx, *.dbf).")
+                  return None
+          else:
+              st.error("Please upload a valid zip file.")
+              return None
     return None
 
 def run_selenium(shapefile_path):
