@@ -47,11 +47,11 @@ def add_background_image(image_file):
 
 def introPage():
     file = st.file_uploader(label="Upload a zip file")
-    st.write(f"File type: {file.type}")
     with st.spinner('Wait for it...'):
         if file is not None:
             if file.type == "application/zip":
               st.write(f"Uploaded file: {file.name}")
+              st.write(f"File type: {file.type}")
               # Ensure the temp_files directory exists
               os.makedirs("temp_files", exist_ok=True)
               # Save the uploaded file to a temporary location
