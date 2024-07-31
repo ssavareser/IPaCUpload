@@ -96,7 +96,7 @@ def run_selenium(shapefile_path):
     chrome_options.add_argument('--disable-dev-shm-usage')
     
     # Initialize Chrome WebDriver with webdriver_manager
-    service = Service(ChromeDriverManager().install())
+    service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
     
     try:
