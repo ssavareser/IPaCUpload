@@ -463,7 +463,7 @@ def _main():
     """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)  # This let's you hide the extra branding and menus
     # Add background image from local file
-    image_file = "flatirons.jpg"
+    image_file = "flatirons.JPG"
     add_background_image(image_file)
 
     # Add title at the top of the screen
