@@ -98,7 +98,7 @@ def run_selenium(shapefile_path):
 
     # Initialize Chrome WebDriver with the specified path
     service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     service.command_line_args().append("--verbose")
     driver = webdriver.Chrome(service=service, options=chrome_options)
     upload_url = 'https://ipac.ecosphere.fws.gov/location/index'
