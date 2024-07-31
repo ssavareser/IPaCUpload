@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import TimeoutException, WebDriverException
 import os
 import time
@@ -86,8 +87,6 @@ def introPage():
     return None
 
 def run_selenium(shapefile_path):
-    # Specify the path to chromedriver
-    chromedriver_path = '/usr/local/bin/chromedriver'  # Adjust this path based on your EC2 instance
 
     # Configure Chrome options
     chrome_options = Options()
@@ -98,7 +97,8 @@ def run_selenium(shapefile_path):
     chrome_options.add_argument('--disable-dev-shm-usage')
 
     # Initialize Chrome WebDriver with the specified path
-    service = Service(chromedriver_path)
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
     service.command_line_args().append("--verbose")
     driver = webdriver.Chrome(service=service, options=chrome_options)
     upload_url = 'https://ipac.ecosphere.fws.gov/location/index'
