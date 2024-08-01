@@ -144,7 +144,6 @@ yarl==1.9.4
 requests
 selenium==4.10.0
 webdriver-manager
-pandas==2.0.3
 xlsxwriter
 Pillow
 seleniumbase
