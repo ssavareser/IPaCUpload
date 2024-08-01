@@ -90,7 +90,7 @@ def introPage():
 def run_selenium(shapefile_path):
     # Configure Chrome options
     chrome_options = Options()
-    # chrome_options.add_argument('--headless')  # Optional: Run Chrome in headless mode
+    chrome_options.add_argument('--headless')  # Optional: Run Chrome in headless mode
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--window-size=1920,1080')
     chrome_options.add_argument('--no-sandbox')
